@@ -1,6 +1,6 @@
 {
-  "name": "Larken's K2 & SE Tweaks",
-  "version": "0.0.1",
+  "name": "LarkenxK2SETweaks",
+  "version": "0.0.3",
   "title": "Larkenx's Krastorio2 and Space Exploration Tweaks",
   "author": "larkenx",
   "contact": "larkenx@gmail.com",
@@ -9,6 +9,7 @@
   "dependencies": [
     "base",
     "Krastorio2",
+    "space-exploration",
     "space-exploration-postprocess",
     "? Moon_Logic",
     "? ImprovedCombinator",
