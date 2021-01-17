@@ -39,8 +39,8 @@ data:extend({
         setting_type = "startup",
         order = "liquid3",
         name = "space-pipe-underground-distance",
-        default_value = 5,
-        minimum_value = 5,
+        default_value = 6,
+        minimum_value = 6,
         maximum_value = 20
 
     }, {
