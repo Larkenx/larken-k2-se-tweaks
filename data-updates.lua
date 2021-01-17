@@ -5,7 +5,7 @@ local function has_value(tab, val)
 end
 
 if krastorio.general.getSafeSettingValue("kr-pipes-and-belts-changes") and
-    settings.startup["allow-long-k2-belt-and-pipe"].value then
+    settings.startup["allow-long-space-underground-belt"].value then
     -- space underground-belt 
     if data.raw["underground-belt"]["se-space-underground-belt"] then
         data.raw["underground-belt"]["se-space-underground-belt"].max_distance =
@@ -18,15 +18,21 @@ if krastorio.general.getSafeSettingValue("kr-pipes-and-belts-changes") and
     end
 
     -- space underground-pipe  
-    if data.raw["pipe-to-ground"]["se-space-pipe-to-ground"] then
-        for index, connection in pairs(
-                                     data.raw["pipe-to-ground"]["se-space-pipe-to-ground"]
-                                         .fluid_box.pipe_connections) do
-            if connection.max_underground_distance then
-                -- see prototypes\vanilla-changes\optional\pipes-and-belts-changes.lua
-                data.raw["pipe-to-ground"]["se-space-pipe-to-ground"].fluid_box
-                    .pipe_connections[index].max_underground_distance = 20
+end
+
+if data.raw["pipe-to-ground"]["se-space-pipe-to-ground"] then
+    for index, connection in pairs(
+                                 data.raw["pipe-to-ground"]["se-space-pipe-to-ground"]
+                                     .fluid_box.pipe_connections) do
+        if connection.max_underground_distance then
+            -- see prototypes\vanilla-changes\optional\pipes-and-belts-changes.lua
+            local max_distance = 20
+            if settings.startup["space-pipe-underground-distance"] then
+                max_distance =
+                    settings.startup["space-pipe-underground-distance"].value
             end
+            data.raw["pipe-to-ground"]["se-space-pipe-to-ground"].fluid_box
+                .pipe_connections[index].max_underground_distance = max_distance
         end
     end
 end
@@ -48,14 +54,27 @@ for k, tank in pairs(data.raw["storage-tank"]) do
         if settings.startup["allow-k2-liquid-tanks-on-space-platform"].value then
             tank.se_allow_in_space = true
         end
-
-        if not settings.startup["allow-k2-liquid-tanks-on-spaceship"].value then
-            tank.collision_layer = {
-                "water-tile", "item-layer", "object-layer", "player-layer",
-                spaceship_collision_layer
-            }
-        end
+        -- if not settings.startup["allow-k2-liquid-tanks-on-spaceship"].value then
+        --     tank.collision_layer = {
+        --         "water-tile", "item-layer", "object-layer", "player-layer",
+        --         spaceship_collision_layer
+        --     }
+        -- end
     end
+end
+
+if settings.startup["allow-matter-buildings-in-space"].value then
+    -- 	type = "assembling-machine",
+    -- name = "kr-matter-assembler",
+    -- type = "assembling-machine",
+    -- name = "kr-matter-plant",
+    -- type = "furnace",
+    -- name = "kr-stabilizer-charging-station",
+    data.raw["assembling-machine"]["kr-matter-assembler"].se_allow_in_space =
+        true
+    data.raw["assembling-machine"]["kr-matter-plant"].se_allow_in_space = true
+    data.raw["furnace"]["kr-stabilizer-charging-station"].se_allow_in_space =
+        true
 end
 
 if settings.startup["allow-steel-pipe-in-space"].value then

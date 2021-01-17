@@ -1,6 +1,6 @@
 {
   "name": "LarkenxK2SETweaks",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "title": "Larkenx's Krastorio2 and Space Exploration Tweaks",
   "author": "larkenx",
   "contact": "larkenx@gmail.com",
@@ -15,5 +15,5 @@
     "? ImprovedCombinator",
     "? nixie-tubes"
   ],
-  "description": "Various tweaks for SE+K2, forked from Xon1's tweaks."
+  "description": "Various tweaks and balancing for SE+K2, forked from Xon1's tweaks."
 }

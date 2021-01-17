@@ -1,0 +1,16 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 1-17-2021
+  Changes:
+    - Add option to allow for matter buildings to be placed in space/spaceships.
+    - Add option to remove charged stabilizers from vulcanite matter deconversion.
+    - Added U235 & Tritium matter conversion (but not deconversion)
+    - Add option for enabling hypercoolers on Spaceships and grounded recipes for hypercoolers, particle accelerators.
+    - Configurable options for matter conversion and deconversion ratios for Vanilla, K2 Ores. (1:1, 1.25:1, 1.5:1, 1.75:1, 2:1). Defaults to 1.25:1.
+    - Configurable options for matter conversion and deconversion ratios for just SE ores. (1:1, 1:1, 1:1, 2:1, 4:1, 8:1). Defaults to 8:1.
+    - Configurable matter cost + density for matter cubes (500, 1000, 2000, 3000). Default 1000.
+    - Configurable space pipe underground max distance lengths up to steel pipe length (20).
+    - Removed non-functional toggle option to block K2 liquids from being placed on spaceships. This is always enabled if you allow them in space at all. No possible way to do keep them in space but not on spaceships currently. (not easily anyway).
+    - Adjusted Vitamelange matter ratios to be the same as Holmium Ore.
+    - Naquium Ore matter values adjusted appropriately for rarity based on space exploration matter ratios and scaling.
+
