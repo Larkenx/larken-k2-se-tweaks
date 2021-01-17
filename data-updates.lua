@@ -26,7 +26,7 @@ if data.raw["pipe-to-ground"]["se-space-pipe-to-ground"] then
                                      .fluid_box.pipe_connections) do
         if connection.max_underground_distance then
             -- see prototypes\vanilla-changes\optional\pipes-and-belts-changes.lua
-            local max_distance = 20
+            local max_distance = 6
             if settings.startup["space-pipe-underground-distance"] then
                 max_distance =
                     settings.startup["space-pipe-underground-distance"].value
