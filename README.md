@@ -11,3 +11,4 @@ All of the following options are toggleable under Startup mod settings. Thanks t
 - Makes K2 Matter Stabilizers 99.5% likely to be preserved versus 99%
 - Tweak matter costs for SE Resources to be 2:1 instead of 8:1
 - Xon1's additional recipe for allowing electric boilers to make 415/975 steam
+- Allows nixi tubes, moonlogic and improved combinator placement on space platforms

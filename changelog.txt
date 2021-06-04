@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.1
+Date: 6-04-2021
+  Changes:
+    - Make it so that you can load my tweaks without K2 just for the Nixie tubes and other tweaks not related to K2 specifically.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 1-17-2021
   Changes:
