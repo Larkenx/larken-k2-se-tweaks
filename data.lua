@@ -1,6 +1,12 @@
 local value_multiplier = 2
 
 if mods["space-exploration"] and mods["Krastorio2"] then
+    local matterIcon
+    if mods["Krastorio2Assets"] then
+        matterIcon = "__Krastorio2Assets__/technologies/backgrounds/matter.png"
+    else
+        matterIcon = "__Krastorio2__/graphics/technologies/backgrounds/matter.png"
+    end
     local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
     local make_tech = function(tech_name, tech_image, cost)
         data:extend(
@@ -11,7 +17,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
                     mod = "K2SETweaks",
                     icons = {
                         {
-                            icon = "__Krastorio2__/graphics/technologies/backgrounds/matter.png",
+                            icon = matterIcon,
                             icon_size = 128
                         },
                         {

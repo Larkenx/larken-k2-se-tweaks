@@ -1,6 +1,6 @@
 {
   "name": "LarkenxK2SETweaks",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "title": "Larkenx's Krastorio2 and Space Exploration Tweaks",
   "author": "larkenx",
   "contact": "larkenx@gmail.com",
@@ -11,6 +11,7 @@
     "space-exploration",
     "space-exploration-postprocess",
     "? Krastorio2",
+    "? Krastorio2Assets",
     "? Moon_Logic",
     "? ImprovedCombinator",
     "? nixie-tubes"
