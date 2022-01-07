@@ -3,139 +3,146 @@ local value_multiplier = 2
 if mods["space-exploration"] and mods["Krastorio2"] then
     local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
     local make_tech = function(tech_name, tech_image, cost)
-        data:extend({
+        data:extend(
             {
-                type = "technology",
-                name = tech_name,
-                mod = "K2SETweaks",
-                icons = {
-                    {
-                        icon = "__Krastorio2__/graphics/technologies/backgrounds/matter.png",
-                        icon_size = 128
-                    }, {
-                        icon = "__space-exploration-graphics__/graphics/technology/" ..
-                            tech_image .. ".png",
-                        icon_size = 128,
-                        scale = 0.5
-                    }
-                },
-                effects = {},
-                prerequisites = {"kr-matter-processing"},
-                order = "g-e-e",
-                unit = {
-                    count = cost,
-                    ingredients = {
-                        {"production-science-pack", 1},
-                        {"utility-science-pack", 1}, {"matter-tech-card", 1}
+                {
+                    type = "technology",
+                    name = tech_name,
+                    mod = "K2SETweaks",
+                    icons = {
+                        {
+                            icon = "__Krastorio2__/graphics/technologies/backgrounds/matter.png",
+                            icon_size = 128
+                        },
+                        {
+                            icon = "__space-exploration-graphics__/graphics/technology/" .. tech_image .. ".png",
+                            icon_size = 128,
+                            scale = 0.5
+                        }
                     },
-                    time = 60
+                    effects = {},
+                    prerequisites = {"kr-matter-processing"},
+                    order = "g-e-e",
+                    unit = {
+                        count = cost,
+                        ingredients = {
+                            {"production-science-pack", 1},
+                            {"utility-science-pack", 1},
+                            {"matter-tech-card", 1}
+                        },
+                        time = 60
+                    }
                 }
             }
-        })
+        )
     end
 
     -- this multiplayer comes straight from space exploration's matter.lua. same as holm
     local value_multiplier = 2
-    make_tech("se-kr-matter-vitamelange-processing", "vitamelange-processing",
-              500)
-    krastorio.matter_func.createMatterRecipe({
-        item_name = "se-vitamelange",
-        minimum_conversion_quantity = 10,
-        matter_value = value_multiplier * 7 * 8, -- x8
-        conversion_matter_value = value_multiplier * 7,
-        energy_required = value_multiplier * 7,
-        need_stabilizer = true,
-        unlocked_by_technology = "se-kr-matter-vitamelange-processing"
-    })
+    make_tech("se-kr-matter-vitamelange-processing", "vitamelange-processing", 500)
+    krastorio.matter_func.createMatterRecipe(
+        {
+            item_name = "se-vitamelange",
+            minimum_conversion_quantity = 10,
+            matter_value = value_multiplier * 7 * 8, -- x8
+            conversion_matter_value = value_multiplier * 7,
+            energy_required = value_multiplier * 7,
+            need_stabilizer = true,
+            unlocked_by_technology = "se-kr-matter-vitamelange-processing"
+        }
+    )
 
     if settings.startup["allow-naquium-matter-processing"].value then
         make_tech("se-kr-matter-naquium-processing", "naquium-processing", 1000)
-        krastorio.matter_func.createMatterRecipe({
-            item_name = "se-naquium-ore",
-            minimum_conversion_quantity = 10,
-            matter_value = value_multiplier * 20 * 8, -- 40 * 8
-            conversion_matter_value = value_multiplier * 20, -- 400
-            energy_required = value_multiplier * 20,
-            need_stabilizer = true,
-            unlocked_by_technology = "se-kr-matter-naquium-processing"
-        })
+        krastorio.matter_func.createMatterRecipe(
+            {
+                item_name = "se-naquium-ore",
+                minimum_conversion_quantity = 10,
+                matter_value = value_multiplier * 20 * 8, -- 40 * 8
+                conversion_matter_value = value_multiplier * 20, -- 400
+                energy_required = value_multiplier * 20,
+                need_stabilizer = true,
+                unlocked_by_technology = "se-kr-matter-naquium-processing"
+            }
+        )
     end
 
-    krastorio.matter_func.createMatterRecipe({
-        item_name = "tritium",
-        minimum_conversion_quantity = 10,
-        matter_value = 100,
-        conversion_matter_value = 100,
-        only_conversion = true,
-        energy_required = 20,
-        need_stabilizer = false,
-        unlocked_by_technology = "kr-matter-uranium-processing"
+    krastorio.matter_func.createMatterRecipe(
+        {
+            item_name = "tritium",
+            minimum_conversion_quantity = 10,
+            matter_value = 100,
+            conversion_matter_value = 100,
+            only_conversion = true,
+            energy_required = 20,
+            need_stabilizer = false,
+            unlocked_by_technology = "kr-matter-uranium-processing"
+        }
+    )
 
-    })
-
-    krastorio.matter_func.createMatterRecipe({
-        item_name = "uranium-235",
-        minimum_conversion_quantity = 10,
-        matter_value = 100,
-        conversion_matter_value = 100,
-        energy_required = 20,
-        need_stabilizer = false,
-        only_conversion = true,
-        unlocked_by_technology = "kr-matter-uranium-processing"
-
-    })
+    krastorio.matter_func.createMatterRecipe(
+        {
+            item_name = "uranium-235",
+            minimum_conversion_quantity = 10,
+            matter_value = 100,
+            conversion_matter_value = 100,
+            energy_required = 20,
+            need_stabilizer = false,
+            only_conversion = true,
+            unlocked_by_technology = "kr-matter-uranium-processing"
+        }
+    )
 
     local data_util = require("__space-exploration__/data_util")
 
-    local heat_capacity = data_util.string_to_number(
-                              data.raw.fluid.steam.heat_capacity)
+    local heat_capacity = data_util.string_to_number(data.raw.fluid.steam.heat_capacity)
     local boiler_power = 5000000
     local efficiency = 0.9
 
-    data:extend({
+    data:extend(
         {
-            type = "recipe",
-            name = "se-electric-boiling-steam-415",
-            results = {
-                {
-                    type = "fluid",
-                    name = "steam",
-                    amount = 100,
-                    temperature = 415
-                }
+            {
+                type = "recipe",
+                name = "se-electric-boiling-steam-415",
+                results = {
+                    {
+                        type = "fluid",
+                        name = "steam",
+                        amount = 100,
+                        temperature = 415
+                    }
+                },
+                enabled = false,
+                energy_required = 2.5 * (415 - 15) * 100 * heat_capacity / boiler_power / efficiency,
+                ingredients = {{type = "fluid", name = "water", amount = 100}},
+                subgroup = "fluid-recipes",
+                requester_paste_multiplier = 1,
+                always_show_made_in = false,
+                category = "se-electric-boiling",
+                order = "a-a-b-c"
             },
-            enabled = false,
-            energy_required = 2.5 * (415 - 15) * 100 * heat_capacity /
-                boiler_power / efficiency,
-            ingredients = {{type = "fluid", name = "water", amount = 100}},
-            subgroup = "fluid-recipes",
-            requester_paste_multiplier = 1,
-            always_show_made_in = false,
-            category = "se-electric-boiling",
-            order = "a-a-b-c"
-        }, {
-            type = "recipe",
-            name = "se-electric-boiling-steam-975",
-            results = {
-                {
-                    type = "fluid",
-                    name = "steam",
-                    amount = 100,
-                    temperature = 975
-                }
-            },
-            enabled = false,
-            energy_required = 2.5 * (975 - 15) * 100 * heat_capacity /
-                boiler_power / efficiency,
-            ingredients = {{type = "fluid", name = "water", amount = 100}},
-            subgroup = "fluid-recipes",
-            requester_paste_multiplier = 1,
-            always_show_made_in = false,
-            category = "se-electric-boiling",
-            order = "a-a-b-c"
+            {
+                type = "recipe",
+                name = "se-electric-boiling-steam-975",
+                results = {
+                    {
+                        type = "fluid",
+                        name = "steam",
+                        amount = 100,
+                        temperature = 975
+                    }
+                },
+                enabled = false,
+                energy_required = 2.5 * (975 - 15) * 100 * heat_capacity / boiler_power / efficiency,
+                ingredients = {{type = "fluid", name = "water", amount = 100}},
+                subgroup = "fluid-recipes",
+                requester_paste_multiplier = 1,
+                always_show_made_in = false,
+                category = "se-electric-boiling",
+                order = "a-a-b-c"
+            }
         }
-    })
-
+    )
 end
 --[[matter_func.createMatterRecipe(args) {
   item_name = a, -- (string) the name of raw product.

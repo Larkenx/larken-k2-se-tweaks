@@ -5,13 +5,15 @@ local allow_in_space = function(type, name)
 end
 
 function tprint(tbl, indent)
-    if not indent then indent = 0 end
+    if not indent then
+        indent = 0
+    end
     for k, v in pairs(tbl) do
         formatting = string.rep("  ", indent) .. k .. ": "
         if type(v) == "table" then
             log(formatting)
             tprint(v, indent + 1)
-        elseif type(v) == 'boolean' then
+        elseif type(v) == "boolean" then
             log(formatting .. tostring(v))
         else
             log(formatting .. v)
@@ -20,7 +22,9 @@ function tprint(tbl, indent)
 end
 
 local function get_recipe_name(recipe)
-    if recipe.name ~= nil then return recipe.name end
+    if recipe.name ~= nil then
+        return recipe.name
+    end
     local main_product = recipe.main_product
     if main_product == nil then
         if recipe.results and recipe.results[0] then
@@ -60,12 +64,15 @@ local function remove_result(recipe, name)
 end
 
 local function has_value(tab, val)
-    for index, value in ipairs(tab) do if value == val then return true end end
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
     return false
 end
 
 if mods["space-exploration"] and mods["Krastorio2"] then
-
     if settings.startup["allow-matter-buildings-in-space"].value then
         -- 	type = "assembling-machine",
         -- name = "kr-matter-assembler",
@@ -73,12 +80,9 @@ if mods["space-exploration"] and mods["Krastorio2"] then
         -- name = "kr-matter-plant",
         -- type = "furnace",
         -- name = "kr-stabilizer-charging-station",
-        data.raw["assembling-machine"]["kr-matter-assembler"].se_allow_in_space =
-            true
-        data.raw["assembling-machine"]["kr-matter-plant"].se_allow_in_space =
-            true
-        data.raw["furnace"]["kr-stabilizer-charging-station"].se_allow_in_space =
-            true
+        data.raw["assembling-machine"]["kr-matter-assembler"].se_allow_in_space = true
+        data.raw["assembling-machine"]["kr-matter-plant"].se_allow_in_space = true
+        data.raw["furnace"]["kr-stabilizer-charging-station"].se_allow_in_space = true
     end
 
     if settings.startup["allow-steel-pipe-in-space"].value then
@@ -87,76 +91,59 @@ if mods["space-exploration"] and mods["Krastorio2"] then
         data.raw.pipe["pipe"].next_upgrade = nil
 
         -- Underground pipes
-        data.raw["pipe-to-ground"]["pipe-to-ground"].fast_replaceable_group =
-            nil
+        data.raw["pipe-to-ground"]["pipe-to-ground"].fast_replaceable_group = nil
         data.raw["pipe-to-ground"]["pipe-to-ground"].next_upgrade = nil
     end
 
     if settings.startup["allow-upgrade-singularity-lab"].value then
-        -- make singularity lab a direct upgrade over space lab. faster speed, but same 
+        -- make singularity lab a direct upgrade over space lab. faster speed, but same
         -- # of modules
         singularityLab = data.raw["lab"]["kr-singularity-lab"]
         spaceScienceLab = data.raw["lab"]["se-space-science-lab"]
         if singularityLab then
             singularityLab.researching_speed = 15
-            singularityLab.module_specification =
-                {
-                    max_entity_info_module_icon_rows = 1,
-                    max_entity_info_module_icons_per_row = 7,
-                    module_info_icon_shift = {0, 2},
-                    module_slots = 6
-                }
+            singularityLab.module_specification = {
+                max_entity_info_module_icon_rows = 1,
+                max_entity_info_module_icons_per_row = 7,
+                module_info_icon_shift = {0, 2},
+                module_slots = 6
+            }
             singularityLab.inputs = spaceScienceLab.inputs
         end
     end
 
     if settings.startup["allow-remove-tesseract-from-stabilizer"].value then
-
-        remove_ingredient(data.raw["recipe"]["matter-stabilizer"],
-                          "se-naquium-tessaract")
+        remove_ingredient(data.raw["recipe"]["matter-stabilizer"], "se-naquium-tessaract")
     end
 
     if settings.startup["allow-remove-stabilizer-for-vulcanite"].value then
-
-        remove_ingredient(data.raw["recipe"]["matter-to-se-vulcanite"],
-                          "charged-matter-stabilizer")
-        remove_result(data.raw["recipe"]["matter-to-se-vulcanite"],
-                      "matter-stabilizer")
+        remove_ingredient(data.raw["recipe"]["matter-to-se-vulcanite"], "charged-matter-stabilizer")
+        remove_result(data.raw["recipe"]["matter-to-se-vulcanite"], "matter-stabilizer")
     end
 
     if settings.startup["allow-hypercooler-on-spaceship"].value then
-        local allowed_collision_mask_values =
-            {
-                "water-tile", "ground-tile", "item-layer", "object-layer",
-                "player-layer"
-            }
+        local allowed_collision_mask_values = {
+            "water-tile",
+            "ground-tile",
+            "item-layer",
+            "object-layer",
+            "player-layer"
+        }
         -- remove the spaceship collision layer from the hypercooler
-        data.raw["assembling-machine"]["se-space-hypercooler"].collision_mask =
-            allowed_collision_mask_values
-        data.raw["assembling-machine"]["se-space-hypercooler"].se_allow_in_space =
-            true
+        data.raw["assembling-machine"]["se-space-hypercooler"].collision_mask = allowed_collision_mask_values
+        data.raw["assembling-machine"]["se-space-hypercooler"].se_allow_in_space = true
         -- in addition, the particle accelerator & thermal radiator recipes get disabled when grounded. causes some issues
         -- when landing because it can delete ingredients currently active
-        local defaultSpaceRadiator =
-            data.raw["assembling-machine"]["se-space-radiator"]
-        local groundedSpaceRadiator =
-            data.raw["assembling-machine"]["se-space-radiator-grounded"]
-        groundedSpaceRadiator.crafting_categories =
-            defaultSpaceRadiator.crafting_categories
-        local defaultSpaceRadiator2 =
-            data.raw["assembling-machine"]["se-space-radiator-2"]
-        local groundedSpaceRadiator2 =
-            data.raw["assembling-machine"]["se-space-radiator-2-grounded"]
-        groundedSpaceRadiator2.crafting_categories =
-            defaultSpaceRadiator2.crafting_categories
+        local defaultSpaceRadiator = data.raw["assembling-machine"]["se-space-radiator"]
+        local groundedSpaceRadiator = data.raw["assembling-machine"]["se-space-radiator-grounded"]
+        groundedSpaceRadiator.crafting_categories = defaultSpaceRadiator.crafting_categories
+        local defaultSpaceRadiator2 = data.raw["assembling-machine"]["se-space-radiator-2"]
+        local groundedSpaceRadiator2 = data.raw["assembling-machine"]["se-space-radiator-2-grounded"]
+        groundedSpaceRadiator2.crafting_categories = defaultSpaceRadiator2.crafting_categories
 
-        local defaultAccelerator =
-            data.raw["assembling-machine"]["se-space-particle-accelerator"]
-        local groundedAccelerator =
-            data.raw["assembling-machine"]["se-space-particle-accelerator-grounded"]
-        groundedAccelerator.crafting_categories =
-            defaultAccelerator.crafting_categories
-
+        local defaultAccelerator = data.raw["assembling-machine"]["se-space-particle-accelerator"]
+        local groundedAccelerator = data.raw["assembling-machine"]["se-space-particle-accelerator-grounded"]
+        groundedAccelerator.crafting_categories = defaultAccelerator.crafting_categories
     end
 
     -- ===================================================================================================
@@ -171,32 +158,26 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 
     for _, recipe in pairs(data.raw.recipe) do
         if recipe.category == "matter-deconversion" then
-            if recipe.ingredients ~= nil and
-                not has_value(excluded_recipes, get_recipe_name(recipe)) and
-                recipe.main_product ~= "matter-cube" and recipe.main_product ~=
-                "charged-antimatter-fuel-cell" and recipe.result ~=
-                "charged-antimatter-fuel-cell" then
+            if
+                recipe.ingredients ~= nil and not has_value(excluded_recipes, get_recipe_name(recipe)) and
+                    recipe.main_product ~= "matter-cube" and
+                    recipe.main_product ~= "charged-antimatter-fuel-cell" and
+                    recipe.result ~= "charged-antimatter-fuel-cell"
+             then
                 for _, ingredient in pairs(recipe.ingredients) do
                     if ingredient.name == "matter" then
                         -- Undo the Space Exploration 2x cost
                         -- space-exploration-postprocess\prototypes\phase-4\krastorio2\matter.lua
                         ingredient.amount = math.floor(ingredient.amount / 2)
                         if ingredient.catalyst_amount then
-                            ingredient.catalyst_amount =
-                                math.floor(ingredient.catalyst_amount / 2)
+                            ingredient.catalyst_amount = math.floor(ingredient.catalyst_amount / 2)
                         end
                         -- Apply a new debuff based on the provided ratio
-                        ingredient.amount =
-                            math.floor(0.5 + ingredient.amount * nerf_factor)
+                        ingredient.amount = math.floor(0.5 + ingredient.amount * nerf_factor)
                         if ingredient.catalyst_amount then
-                            ingredient.catalyst_amount =
-                                math.floor(
-                                    0.5 + ingredient.catalyst_amount *
-                                        nerf_factor)
+                            ingredient.catalyst_amount = math.floor(0.5 + ingredient.catalyst_amount * nerf_factor)
                         end
-
                     end
-
                 end
             end
         end
@@ -242,42 +223,42 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 
     if settings.startup["allow-se-ore-matter-changes"].value then
         se_resources = {
-            "se-vulcanite", "se-cryonite", "se-beryllium-ore", "se-holmium-ore",
-            "se-iridium-ore", "se-vitamelange", "se-naquium-ore",
-            "deadlock-stack-se-vulcanite", "deadlock-stack-se-cryonite",
-            "deadlock-stack-se-beryllium-ore", "deadlock-stack-se-holmium-ore",
-            "deadlock-stack-se-iridium-ore", "deadlock-stack-se-vitamelange",
+            "se-vulcanite",
+            "se-cryonite",
+            "se-beryllium-ore",
+            "se-holmium-ore",
+            "se-iridium-ore",
+            "se-vitamelange",
+            "se-naquium-ore",
+            "deadlock-stack-se-vulcanite",
+            "deadlock-stack-se-cryonite",
+            "deadlock-stack-se-beryllium-ore",
+            "deadlock-stack-se-holmium-ore",
+            "deadlock-stack-se-iridium-ore",
+            "deadlock-stack-se-vitamelange",
             "deadlock-stack-se-naquium-ore"
         }
 
         se_matter_ratio = 8.0
         if settings.startup["se-ore-matter-reconversion-ratio"] then
-            se_matter_ratio =
-                settings.startup["se-ore-matter-reconversion-ratio"].value
+            se_matter_ratio = settings.startup["se-ore-matter-reconversion-ratio"].value
         end
 
         log("Fixing SE ores matter deconversion & conversion ratios")
 
-        -- Fetch the cost of each matter deconversion ratio for SE resources, then set the conversion ratio of 
+        -- Fetch the cost of each matter deconversion ratio for SE resources, then set the conversion ratio of
         -- the matter resources to be that * the ratio we've selected (2x, 4x, etc)
         for _, se_resource in pairs(se_resources) do
             local matter_value = nil
-            matter_conversion_recipe = data.raw["recipe"][se_resource ..
-                                           "-to-matter"]
-            matter_deconversion_recipe =
-                data.raw["recipe"]["matter-to-" .. se_resource]
+            matter_conversion_recipe = data.raw["recipe"][se_resource .. "-to-matter"]
+            matter_deconversion_recipe = data.raw["recipe"]["matter-to-" .. se_resource]
             log("Tweaking SE Resource matter ratios: " .. se_resource)
-            if matter_conversion_recipe ~= nil and matter_deconversion_recipe ~=
-                nil then
-
+            if matter_conversion_recipe ~= nil and matter_deconversion_recipe ~= nil then
                 -- Find the total matter value by getting its deconversion matter ingredient
-                for _, ingredient in pairs(
-                                         data.raw["recipe"]["matter-to-" ..
-                                             se_resource].ingredients) do
+                for _, ingredient in pairs(data.raw["recipe"]["matter-to-" .. se_resource].ingredients) do
                     if ingredient.name == "matter" then
                         matter_value = ingredient.amount
-                        log("Cost to create " .. se_resource .. " is " ..
-                                matter_value .. " matter")
+                        log("Cost to create " .. se_resource .. " is " .. matter_value .. " matter")
                     end
                 end
 
@@ -286,8 +267,8 @@ if mods["space-exploration"] and mods["Krastorio2"] then
                     if result.name == "matter" then
                         result.amount = matter_value / se_matter_ratio
                         log(
-                            "New matter gained when converting to matter for " ..
-                                se_resource .. " is " .. result.amount)
+                            "New matter gained when converting to matter for " .. se_resource .. " is " .. result.amount
+                        )
                         break
                     end
                 end
