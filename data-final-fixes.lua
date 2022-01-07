@@ -1,15 +1,9 @@
-local allow_in_space = function(type, name)
-    if data.raw[type][name] then
-        data.raw[type][name].se_allow_in_space = true
-    end
-end
-
-function tprint(tbl, indent)
+local function tprint(tbl, indent)
     if not indent then
         indent = 0
     end
     for k, v in pairs(tbl) do
-        formatting = string.rep("  ", indent) .. k .. ": "
+        local formatting = string.rep("  ", indent) .. k .. ": "
         if type(v) == "table" then
             log(formatting)
             tprint(v, indent + 1)
@@ -98,8 +92,8 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     if settings.startup["allow-upgrade-singularity-lab"].value then
         -- make singularity lab a direct upgrade over space lab. faster speed, but same
         -- # of modules
-        singularityLab = data.raw["lab"]["kr-singularity-lab"]
-        spaceScienceLab = data.raw["lab"]["se-space-science-lab"]
+        local singularityLab = data.raw["lab"]["kr-singularity-lab"]
+        local spaceScienceLab = data.raw["lab"]["se-space-science-lab"]
         if singularityLab then
             singularityLab.researching_speed = 15
             singularityLab.module_specification = {
@@ -222,7 +216,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     end
 
     if settings.startup["allow-se-ore-matter-changes"].value then
-        se_resources = {
+        local se_resources = {
             "se-vulcanite",
             "se-cryonite",
             "se-beryllium-ore",
@@ -239,7 +233,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
             "deadlock-stack-se-naquium-ore"
         }
 
-        se_matter_ratio = 8.0
+        local se_matter_ratio = 8.0
         if settings.startup["se-ore-matter-reconversion-ratio"] then
             se_matter_ratio = settings.startup["se-ore-matter-reconversion-ratio"].value
         end
@@ -250,8 +244,8 @@ if mods["space-exploration"] and mods["Krastorio2"] then
         -- the matter resources to be that * the ratio we've selected (2x, 4x, etc)
         for _, se_resource in pairs(se_resources) do
             local matter_value = nil
-            matter_conversion_recipe = data.raw["recipe"][se_resource .. "-to-matter"]
-            matter_deconversion_recipe = data.raw["recipe"]["matter-to-" .. se_resource]
+            local matter_conversion_recipe = data.raw["recipe"][se_resource .. "-to-matter"]
+            local matter_deconversion_recipe = data.raw["recipe"]["matter-to-" .. se_resource]
             log("Tweaking SE Resource matter ratios: " .. se_resource)
             if matter_conversion_recipe ~= nil and matter_deconversion_recipe ~= nil then
                 -- Find the total matter value by getting its deconversion matter ingredient

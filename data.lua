@@ -1,4 +1,10 @@
+-- this multiplayer comes straight from space exploration's matter.lua. same as holm
 local value_multiplier = 2
+
+local krastorio
+if mods["Krastorio2"] then
+    krastorio = _G.krastorio
+end
 
 if mods["space-exploration"] and mods["Krastorio2"] then
     local matterIcon
@@ -43,7 +49,6 @@ if mods["space-exploration"] and mods["Krastorio2"] then
         )
     end
 
-    -- this multiplayer comes straight from space exploration's matter.lua. same as holm
     local value_multiplier = 2
     make_tech("se-kr-matter-vitamelange-processing", "vitamelange-processing", 500)
     krastorio.matter_func.createMatterRecipe(

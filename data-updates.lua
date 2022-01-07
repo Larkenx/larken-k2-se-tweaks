@@ -8,6 +8,11 @@ local function has_value(tab, val)
     return false
 end
 
+local krastorio
+if mods["Krastorio2"] then
+    krastorio = _G.krastorio
+end
+
 if mods["space-exploration"] and mods["Krastorio2"] then
     if
         krastorio.general.getSafeSettingValue("kr-pipes-and-belts-changes") and
@@ -76,12 +81,12 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     end
 
     if settings.startup["allow-steel-pipe-in-space"].value then
-        steelPipeUnderground = data.raw["pipe-to-ground"]["kr-steel-pipe-to-ground"]
+        local steelPipeUnderground = data.raw["pipe-to-ground"]["kr-steel-pipe-to-ground"]
         if steelPipeUnderground then
             steelPipeUnderground.se_allow_in_space = true
         end
 
-        steelPipe = data.raw["pipe"]["kr-steel-pipe"]
+        local steelPipe = data.raw["pipe"]["kr-steel-pipe"]
         if steelPipe then
             steelPipe.se_allow_in_space = true
         end
@@ -89,29 +94,29 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 end
 
 -- Moon Logic Combinator placeable in Space
-moonLogicCombinator = data.raw["item"]["mlc"]
+local moonLogicCombinator = data.raw["item"]["mlc"]
 if moonLogicCombinator then
     moonLogicCombinator.se_allow_in_space = true
 end
 
 -- nixie tubes
-nixtube = data.raw["lamp"]["nixie-tube"]
+local nixtube = data.raw["lamp"]["nixie-tube"]
 if nixtube then
     nixtube.se_allow_in_space = true
 end
 
-nixtubeSmall = data.raw["lamp"]["nixie-tube-small"]
+local nixtubeSmall = data.raw["lamp"]["nixie-tube-small"]
 if nixtubeSmall then
     nixtubeSmall.se_allow_in_space = true
 end
 
-nixtubeAlpha = data.raw["lamp"]["nixie-tube-alpha"]
+local nixtubeAlpha = data.raw["lamp"]["nixie-tube-alpha"]
 if nixtubeAlpha then
     nixtubeAlpha.se_allow_in_space = true
 end
 
 -- improved combinator
-improvedCombinator = data.raw["container"]["improved-combinator"]
+local improvedCombinator = data.raw["container"]["improved-combinator"]
 if improvedCombinator then
     improvedCombinator.se_allow_in_space = true
 end
