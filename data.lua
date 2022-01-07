@@ -13,7 +13,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     else
         matterIcon = "__Krastorio2__/graphics/technologies/backgrounds/matter.png"
     end
-    local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
+    --local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
     local make_tech = function(tech_name, tech_image, cost)
         data:extend(
             {
@@ -49,7 +49,6 @@ if mods["space-exploration"] and mods["Krastorio2"] then
         )
     end
 
-    local value_multiplier = 2
     make_tech("se-kr-matter-vitamelange-processing", "vitamelange-processing", 500)
     krastorio.matter_func.createMatterRecipe(
         {

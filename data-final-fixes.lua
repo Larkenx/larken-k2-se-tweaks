@@ -1,20 +1,3 @@
-local function tprint(tbl, indent)
-    if not indent then
-        indent = 0
-    end
-    for k, v in pairs(tbl) do
-        local formatting = string.rep("  ", indent) .. k .. ": "
-        if type(v) == "table" then
-            log(formatting)
-            tprint(v, indent + 1)
-        elseif type(v) == "boolean" then
-            log(formatting .. tostring(v))
-        else
-            log(formatting .. v)
-        end
-    end
-end
-
 local function get_recipe_name(recipe)
     if recipe.name ~= nil then
         return recipe.name
