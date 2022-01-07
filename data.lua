@@ -1,6 +1,6 @@
+require("__Krastorio2__/lib/public/data-stages/matter-util")
 -- this multiplayer comes straight from space exploration's matter.lua. same as holm
 local value_multiplier = 2
-
 local krastorio
 if mods["Krastorio2"] then
     krastorio = _G.krastorio
@@ -13,7 +13,6 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     else
         matterIcon = "__Krastorio2__/graphics/technologies/backgrounds/matter.png"
     end
-    --local matter = require("__Krastorio2__/lib/public/data-stages/matter-util")
     local make_tech = function(tech_name, tech_image, cost)
         data:extend(
             {
