@@ -1,3 +1,5 @@
+require("__LarkenxK2SETweaks__/data/K2SE_logistic_pipes_data-final-fixes")
+
 if mods["space-exploration"] and mods["Krastorio2"] then
     if settings.startup["allow-matter-buildings-in-space"].value then
         -- 	type = "assembling-machine",
@@ -9,16 +11,6 @@ if mods["space-exploration"] and mods["Krastorio2"] then
         data.raw["assembling-machine"]["kr-matter-assembler"].se_allow_in_space = true
         data.raw["assembling-machine"]["kr-matter-plant"].se_allow_in_space = true
         data.raw["furnace"]["kr-stabilizer-charging-station"].se_allow_in_space = true
-    end
-
-    if settings.startup["allow-steel-pipe-in-space"].value then
-        -- Pipes
-        data.raw.pipe["pipe"].fast_replaceable_group = nil
-        data.raw.pipe["pipe"].next_upgrade = nil
-
-        -- Underground pipes
-        data.raw["pipe-to-ground"]["pipe-to-ground"].fast_replaceable_group = nil
-        data.raw["pipe-to-ground"]["pipe-to-ground"].next_upgrade = nil
     end
 
     if settings.startup["allow-upgrade-singularity-lab"].value then
