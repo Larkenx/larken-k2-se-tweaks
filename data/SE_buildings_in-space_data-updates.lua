@@ -1,4 +1,5 @@
-﻿if mods["space-exploration"] and mods["Krastorio2"] then
+﻿local util = require("__LarkenxK2SETweaks__/data/util")
+if mods["space-exploration"] and mods["Krastorio2"] then
 	-- K2 Storage Tanks in space
 	local tanks = {"kr-fluid-storage-1", "kr-fluid-storage-2"}
 	for k, tank in pairs(data.raw["storage-tank"]) do

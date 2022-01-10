@@ -13,7 +13,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 	for _, recipe in pairs(data.raw.recipe) do
 		if recipe.category == "matter-deconversion" then
 			if
-				recipe.ingredients ~= nil and not has_value(excluded_recipes, util.get_recipe_name(recipe)) and
+				recipe.ingredients ~= nil and not util.has_value(excluded_recipes, util.get_recipe_name(recipe)) and
 					recipe.main_product ~= "matter-cube" and
 					recipe.main_product ~= "charged-antimatter-fuel-cell" and
 					recipe.result ~= "charged-antimatter-fuel-cell"
