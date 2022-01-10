@@ -1,6 +1,7 @@
 require("__LarkenxK2SETweaks__/data/K2SE_matterconversion_vitamelange_data")
 require("__LarkenxK2SETweaks__/data/K2SE_matterconversion_naquium_data")
 require("__LarkenxK2SETweaks__/data/K2SE_matterconversion_tritium_data")
+require("__LarkenxK2SETweaks__/data/K2SE_matterconversion_uranium_data")
 
 local matter_util = require("__LarkenxK2SETweaks__/data/K2SE_matterconversion_util")
 require("__Krastorio2__/lib/public/data-stages/matter-util")
@@ -12,18 +13,6 @@ if mods["Krastorio2"] then
 end
 
 if mods["space-exploration"] and mods["Krastorio2"] then
-    krastorio.matter_func.createMatterRecipe(
-        {
-            item_name = "uranium-235",
-            minimum_conversion_quantity = 10,
-            matter_value = 100,
-            conversion_matter_value = 100,
-            energy_required = 20,
-            need_stabilizer = false,
-            only_conversion = true,
-            unlocked_by_technology = "kr-matter-uranium-processing"
-        }
-    )
 
     local data_util = require("__space-exploration__/data_util")
 
