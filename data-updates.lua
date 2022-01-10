@@ -1,3 +1,5 @@
+require("__LarkenxK2SETweaks__/data/SE_steam_415-975_data-updates")
+
 local function has_value(tab, val)
     for index, value in ipairs(tab) do
         if value == val then
@@ -49,9 +51,6 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     if data.raw.recipe["se-space-pipe-to-ground"] then
         data.raw.recipe["se-space-pipe-to-ground"].result_count = data.raw.recipe["pipe-to-ground"].result_count
     end
-
-    krastorio.technologies.addUnlockRecipe("se-electric-boiler", "se-electric-boiling-steam-415")
-    krastorio.technologies.addUnlockRecipe("se-electric-boiler", "se-electric-boiling-steam-975")
 
     local tanks = {"kr-fluid-storage-1", "kr-fluid-storage-2"}
     for k, tank in pairs(data.raw["storage-tank"]) do
