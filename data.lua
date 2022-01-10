@@ -1,3 +1,4 @@
+local matter_util = require("__LarkenxK2SETweaks__/data/K2SE_matterconversion_util")
 require("__Krastorio2__/lib/public/data-stages/matter-util")
 -- this multiplayer comes straight from space exploration's matter.lua. same as holm
 local value_multiplier = 2
@@ -8,47 +9,7 @@ end
 
 if mods["space-exploration"] and mods["Krastorio2"] then
     local matterIcon
-    if mods["Krastorio2Assets"] then
-        matterIcon = "__Krastorio2Assets__/technologies/backgrounds/matter.png"
-    else
-        matterIcon = "__Krastorio2__/graphics/technologies/backgrounds/matter.png"
-    end
-    local make_tech = function(tech_name, tech_image, cost)
-        data:extend(
-            {
-                {
-                    type = "technology",
-                    name = tech_name,
-                    mod = "K2SETweaks",
-                    icons = {
-                        {
-                            icon = matterIcon,
-                            icon_size = 128
-                        },
-                        {
-                            icon = "__space-exploration-graphics__/graphics/technology/" .. tech_image .. ".png",
-                            icon_size = 128,
-                            scale = 0.5
-                        }
-                    },
-                    effects = {},
-                    prerequisites = {"kr-matter-processing"},
-                    order = "g-e-e",
-                    unit = {
-                        count = cost,
-                        ingredients = {
-                            {"production-science-pack", 1},
-                            {"utility-science-pack", 1},
-                            {"matter-tech-card", 1}
-                        },
-                        time = 60
-                    }
-                }
-            }
-        )
-    end
-
-    make_tech("se-kr-matter-vitamelange-processing", "vitamelange-processing", 500)
+    matter_util.make_matter_tech("se-kr-matter-vitamelange-processing", "vitamelange-processing", 500)
     krastorio.matter_func.createMatterRecipe(
         {
             item_name = "se-vitamelange",
@@ -62,7 +23,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     )
 
     if settings.startup["allow-naquium-matter-processing"].value then
-        make_tech("se-kr-matter-naquium-processing", "naquium-processing", 1000)
+        matter_util.make_matter_tech("se-kr-matter-naquium-processing", "naquium-processing", 1000)
         krastorio.matter_func.createMatterRecipe(
             {
                 item_name = "se-naquium-ore",
