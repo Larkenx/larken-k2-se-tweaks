@@ -19,4 +19,4 @@
 
 ### Acknowledgements
 - Startup mod settings implemented by @Karoschl and @Haydn!
-- Various changes by @Karoschl, check out [his mods] (https://mods.factorio.com/user/karoschel)
+- Various changes by @Karoschl, check out [his mods](https://mods.factorio.com/user/karoschel)
