@@ -1,4 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.3
+Date: 2022-01-10
+  Updated-by:
+    - Karoschl
+  Changes:
+    - Rebalanced tritium matter conversion
+    - Various small refactorings
+  Bugfixes:
+    - Fixed locale-en
+    - Fixed tech icons
+---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 2022-01-06
   Updated-by:
