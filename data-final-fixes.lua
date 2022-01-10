@@ -2,7 +2,6 @@ require("__LarkenxK2SETweaks__/data/K2SE_logistic_pipes_data-final-fixes")
 require("__LarkenxK2SETweaks__/data/SE_buildings_in-space_data-final-fixes")
 
 if mods["space-exploration"] and mods["Krastorio2"] then
-
     if settings.startup["allow-upgrade-singularity-lab"].value then
         -- make singularity lab a direct upgrade over space lab. faster speed, but same
         -- # of modules
