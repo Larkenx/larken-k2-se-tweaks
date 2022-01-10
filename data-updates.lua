@@ -1,14 +1,5 @@
 require("__LarkenxK2SETweaks__/data/SE_steam_415-975_data-updates")
-
-local function has_value(tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-
-    return false
-end
+local util = require("__LarkenxK2SETweaks__/data/util")
 
 local krastorio
 if mods["Krastorio2"] then
@@ -54,7 +45,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 
     local tanks = {"kr-fluid-storage-1", "kr-fluid-storage-2"}
     for k, tank in pairs(data.raw["storage-tank"]) do
-        if has_value(tanks, tank.name) then
+        if util.has_value(tanks, tank.name) then
             if settings.startup["allow-k2-liquid-tanks-on-space-platform"].value then
                 tank.se_allow_in_space = true
             end
