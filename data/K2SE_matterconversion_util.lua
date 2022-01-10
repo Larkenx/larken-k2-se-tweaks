@@ -1,6 +1,7 @@
 ﻿local util = {}
 -------------------------------------------------------------------------------
 util.make_matter_tech = function(tech_name, tech_image, cost)
+	local matterIcon
 	if mods["Krastorio2Assets"] then
 		matterIcon = "__Krastorio2Assets__/technologies/backgrounds/matter.png"
 	else
