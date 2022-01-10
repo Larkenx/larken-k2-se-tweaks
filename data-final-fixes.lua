@@ -1,17 +1,7 @@
 require("__LarkenxK2SETweaks__/data/K2SE_logistic_pipes_data-final-fixes")
+require("__LarkenxK2SETweaks__/data/SE_buildings_in-space_data-final-fixes")
 
 if mods["space-exploration"] and mods["Krastorio2"] then
-    if settings.startup["allow-matter-buildings-in-space"].value then
-        -- 	type = "assembling-machine",
-        -- name = "kr-matter-assembler",
-        -- type = "assembling-machine",
-        -- name = "kr-matter-plant",
-        -- type = "furnace",
-        -- name = "kr-stabilizer-charging-station",
-        data.raw["assembling-machine"]["kr-matter-assembler"].se_allow_in_space = true
-        data.raw["assembling-machine"]["kr-matter-plant"].se_allow_in_space = true
-        data.raw["furnace"]["kr-stabilizer-charging-station"].se_allow_in_space = true
-    end
 
     if settings.startup["allow-upgrade-singularity-lab"].value then
         -- make singularity lab a direct upgrade over space lab. faster speed, but same
