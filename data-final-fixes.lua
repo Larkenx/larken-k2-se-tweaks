@@ -1,54 +1,3 @@
-local function get_recipe_name(recipe)
-    if recipe.name ~= nil then
-        return recipe.name
-    end
-    local main_product = recipe.main_product
-    if main_product == nil then
-        if recipe.results and recipe.results[0] then
-            return recipe.results[0].name
-        elseif recipe.result and recipe.result.name then
-            return recipe.result.name
-        elseif recipe.result and recipe.result ~= nil then
-            return recipe.result
-        end
-    else
-        return main_product
-    end
-end
-
-local function remove_ingredient(recipe, name)
-    for i = #recipe.ingredients, 1, -1 do
-        if recipe.ingredients[i] then
-            for _, value in pairs(recipe.ingredients[i]) do
-                if value == name then
-                    table.remove(recipe.ingredients, i)
-                end
-            end
-        end
-    end
-end
-
-local function remove_result(recipe, name)
-    for i = #recipe.results, 1, -1 do
-        if recipe.results[i] then
-            for _, value in pairs(recipe.results[i]) do
-                if value == name then
-                    table.remove(recipe.results, i)
-                end
-            end
-        end
-    end
-end
-
-local function has_value(tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-    return false
-end
-
 if mods["space-exploration"] and mods["Krastorio2"] then
     if settings.startup["allow-matter-buildings-in-space"].value then
         -- 	type = "assembling-machine",
@@ -90,12 +39,12 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     end
 
     if settings.startup["allow-remove-tesseract-from-stabilizer"].value then
-        remove_ingredient(data.raw["recipe"]["matter-stabilizer"], "se-naquium-tessaract")
+        util.remove_ingredient(data.raw["recipe"]["matter-stabilizer"], "se-naquium-tessaract")
     end
 
     if settings.startup["allow-remove-stabilizer-for-vulcanite"].value then
-        remove_ingredient(data.raw["recipe"]["matter-to-se-vulcanite"], "charged-matter-stabilizer")
-        remove_result(data.raw["recipe"]["matter-to-se-vulcanite"], "matter-stabilizer")
+        util.remove_ingredient(data.raw["recipe"]["matter-to-se-vulcanite"], "charged-matter-stabilizer")
+        util.remove_result(data.raw["recipe"]["matter-to-se-vulcanite"], "matter-stabilizer")
     end
 
     if settings.startup["allow-hypercooler-on-spaceship"].value then
@@ -136,7 +85,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     for _, recipe in pairs(data.raw.recipe) do
         if recipe.category == "matter-deconversion" then
             if
-                recipe.ingredients ~= nil and not has_value(excluded_recipes, get_recipe_name(recipe)) and
+                recipe.ingredients ~= nil and not has_value(excluded_recipes, util.get_recipe_name(recipe)) and
                     recipe.main_product ~= "matter-cube" and
                     recipe.main_product ~= "charged-antimatter-fuel-cell" and
                     recipe.result ~= "charged-antimatter-fuel-cell"
@@ -259,7 +208,7 @@ end
 
 -- for _, recipe in pairs(data.raw.recipe) do
 --     if recipe.category == "matter-deconversion" then
---         main_product = get_recipe_name(recipe)
+--         main_product = util.get_recipe_name(recipe)
 
 --         if main_product then
 --             -- log(main_product)
