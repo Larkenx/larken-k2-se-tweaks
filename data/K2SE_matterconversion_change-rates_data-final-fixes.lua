@@ -105,9 +105,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 				for _, result in pairs(matter_conversion_recipe.results) do
 					if result.name == "matter" then
 						result.amount = matter_value / se_matter_ratio
-						log(
-							"New matter gained when converting to matter for " .. se_resource .. " is " .. result.amount
-						)
+						log("New matter gained when converting to matter for " .. se_resource .. " is " .. result.amount)
 						break
 					end
 				end

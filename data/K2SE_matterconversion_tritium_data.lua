@@ -18,4 +18,3 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 		}
 	)
 end
- 
