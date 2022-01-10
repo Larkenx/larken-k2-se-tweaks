@@ -5,6 +5,7 @@ if mods["space-exploration"] and mods["Krastorio2"] then
   local value_multiplier = 2 -- straight from space exploration's matter.lua
   local krastorio = _G.krastorio
   -- ToDo: needs it's own tech, as tritium unlock is much later than uranium.
+  -- Balanced conversion rate
   krastorio.matter_func.createMatterRecipe(
     {
       item_name = "tritium",
