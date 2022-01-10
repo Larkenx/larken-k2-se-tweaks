@@ -9,11 +9,11 @@ if mods["space-exploration"] and mods["Krastorio2"] then
 		{
 			item_name = "tritium",
 			minimum_conversion_quantity = 10,
-			matter_value = 100,
-			conversion_matter_value = 100,
+			matter_value = 20,
+			conversion_matter_value = 20,
 			only_conversion = true,
 			energy_required = 20,
-			need_stabilizer = false,
+			need_stabilizer = true,
 			unlocked_by_technology = "kr-matter-uranium-processing"
 		}
 	)
