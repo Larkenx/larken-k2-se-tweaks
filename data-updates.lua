@@ -1,29 +1,15 @@
 require("__LarkenxK2SETweaks__/data/SE_steam_415-975_data-updates")
-local util = require("__LarkenxK2SETweaks__/data/util")
+require("__LarkenxK2SETweaks__/data/K2SE_logistic_belts_data-updates")
 
+local util = require("__LarkenxK2SETweaks__/data/util")
 local krastorio
 if mods["Krastorio2"] then
     krastorio = _G.krastorio
 end
 
 if mods["space-exploration"] and mods["Krastorio2"] then
-    if
-        krastorio.general.getSafeSettingValue("kr-pipes-and-belts-changes") and
-            settings.startup["allow-long-space-underground-belt"].value
-     then
-        -- space underground-belt
-        if data.raw["underground-belt"]["se-space-underground-belt"] then
-            data.raw["underground-belt"]["se-space-underground-belt"].max_distance =
-                data.raw["underground-belt"]["express-underground-belt"].max_distance
-        end
-        if data.raw.recipe["se-space-underground-belt"] then
-            data.raw.recipe["se-space-underground-belt"].result_count =
-                data.raw.recipe["express-underground-belt"].result_count
-        end
 
     -- space underground-pipe
-    end
-
     if data.raw["pipe-to-ground"]["se-space-pipe-to-ground"] then
         for index, connection in pairs(data.raw["pipe-to-ground"]["se-space-pipe-to-ground"].fluid_box.pipe_connections) do
             if connection.max_underground_distance then
