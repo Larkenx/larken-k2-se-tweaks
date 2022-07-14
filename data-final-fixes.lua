@@ -14,12 +14,6 @@ local function get_recipe_name(recipe)
     end
 end
 
-local function remove_all_ingredients(recipe, name)
-    if recipe["normal"] then remove_ingredient(recipe.normal, name) end
-
-    if recipe["expensive"] then remove_ingredient(recipe.expensive, name) end
-end
-
 local function remove_ingredient(recipe, name)
     if recipe["ingredients"] then
         for i = #recipe.ingredients, 1, -1 do
@@ -33,6 +27,15 @@ local function remove_ingredient(recipe, name)
         end
     end
 
+end
+
+local function remove_all_ingredients(recipe, name)
+
+	if recipe["ingredients"] then remove_ingredient(recipe, name)
+
+    if recipe["normal"] then remove_ingredient(recipe.normal, name) end
+
+    if recipe["expensive"] then remove_ingredient(recipe.expensive, name) end
 end
 
 local function remove_result(recipe, name)
@@ -97,13 +100,13 @@ if mods["space-exploration"] and mods["Krastorio2"] then
     end
 
     if settings.startup["allow-remove-tesseract-from-stabilizer"].value then
-        remove_ingredient(data.raw["recipe"]["matter-stabilizer"],
-                          "se-naquium-tessaract")
+        remove_all_ingredients(data.raw["recipe"]["matter-stabilizer"],
+                               "se-naquium-tessaract")
     end
 
     if settings.startup["allow-remove-stabilizer-for-vulcanite"].value then
-        remove_ingredient(data.raw["recipe"]["matter-to-se-vulcanite"],
-                          "charged-matter-stabilizer")
+        remove_all_ingredients(data.raw["recipe"]["matter-to-se-vulcanite"],
+                               "charged-matter-stabilizer")
         remove_result(data.raw["recipe"]["matter-to-se-vulcanite"],
                       "matter-stabilizer")
     end
