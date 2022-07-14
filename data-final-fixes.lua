@@ -31,7 +31,7 @@ end
 
 local function remove_all_ingredients(recipe, name)
 
-	if recipe["ingredients"] then remove_ingredient(recipe, name)
+    if recipe["ingredients"] then remove_ingredient(recipe, name) end
 
     if recipe["normal"] then remove_ingredient(recipe.normal, name) end
 
